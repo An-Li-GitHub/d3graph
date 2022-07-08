@@ -26,22 +26,14 @@ from pathlib import Path
 from ismember import ismember
 import colourmap as cm
 
-logger = logging.getLogger('')
-for handler in logger.handlers[:]:
-    logger.removeHandler(handler)
-console = logging.StreamHandler()
-# formatter = logging.Formatter('[%(asctime)s] [XXX]> %(levelname)s> %(message)s', datefmt='%H:%M:%S')
-formatter = logging.Formatter('[d3graph] %(levelname)s> %(message)s')
-console.setFormatter(formatter)
-logger.addHandler(console)
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 # %%
 class d3graph():
     """Make interactive network in D3 javascript."""
 
-    def __init__(self, collision=0.5, charge=350, slider=[None, None], verbose=20):
+    def __init__(self, collision=0.5, charge=350, slider=[None, None], verbose=60):
         """Initialize d3graph.
 
         Description
@@ -678,7 +670,7 @@ def adjmat2dict(adjmat, min_weight=0, edge_distance_minmax=[1, 10]):
         dict_edges[edge] = {'weight': df['weight'].iloc[i], 'weight_scaled': df['weight_scaled'].iloc[i], 'color': '#000000'}
 
     # Return
-    return(dict_edges)
+    return (dict_edges)
 
 
 # %% Convert dict with edges to graph (G) (also works with lower versions of networkx)
